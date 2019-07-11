@@ -49,6 +49,21 @@ export default class States extends React.Component {
                   {this.props.state.state_name}
                 </div>
               </Label>
+              <Modal
+                    trigger={<Button color="green">View</Button>}
+                    size="fullscreen"
+                  >
+                    <Modal.Header>Users</Modal.Header>
+                    <Modal.Content>
+                      {this.props.state.volunteers.map((person,index)=>{
+                        return( <ModalCard volunteer = {person}></ModalCard>)
+                      })}
+                     
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <NestedModal />
+                    </Modal.Actions>
+                  </Modal>
             </div>
           </List.Header>
           <List.Description />

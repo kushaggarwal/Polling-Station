@@ -50,7 +50,7 @@ export default class District extends React.Component {
                   >
                     <Modal.Header>Users</Modal.Header>
                     <Modal.Content>
-                      <ModalCard />
+                      <ModalCard volunteer = {this.props.district}></ModalCard>
                     </Modal.Content>
                     <Modal.Actions>
                       <NestedModal />
