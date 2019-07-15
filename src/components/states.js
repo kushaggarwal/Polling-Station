@@ -50,20 +50,23 @@ export default class States extends React.Component {
                 </div>
               </Label>
               <Modal
-                    trigger={<Button color="green">View</Button>}
-                    size="fullscreen"
-                  >
-                    <Modal.Header>Users</Modal.Header>
-                    <Modal.Content>
-                      {this.props.state.volunteers.map((person,index)=>{
-                        return( <ModalCard volunteer = {person}></ModalCard>)
-                      })}
-                     
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <NestedModal />
-                    </Modal.Actions>
-                  </Modal>
+                trigger={
+                  <Button color="green" style={{ marginTop: "20px" }}>
+                    View
+                  </Button>
+                }
+                size="fullscreen"
+              >
+                <Modal.Header>Users</Modal.Header>
+                <Modal.Content>
+                  {this.props.state.volunteers.map((person, index) => {
+                    return <ModalCard volunteer={person} />;
+                  })}
+                </Modal.Content>
+                <Modal.Actions>
+                  <NestedModal Id={this.props.state.id} />
+                </Modal.Actions>
+              </Modal>
             </div>
           </List.Header>
           <List.Description />

@@ -50,10 +50,14 @@ export default class District extends React.Component {
                   >
                     <Modal.Header>Users</Modal.Header>
                     <Modal.Content>
-                      <ModalCard volunteer = {this.props.district}></ModalCard>
+                      {this.props.district.volunteers.map(
+                        (volunteer, index) => {
+                          return <ModalCard volunteer={volunteer} />;
+                        }
+                      )}
                     </Modal.Content>
                     <Modal.Actions>
-                      <NestedModal />
+                      <NestedModal Id={this.props.district.id} />
                     </Modal.Actions>
                   </Modal>
                 </div>

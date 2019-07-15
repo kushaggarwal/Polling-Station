@@ -44,10 +44,12 @@ export default class Stations extends React.Component {
                     >
                       <Modal.Header>Users</Modal.Header>
                       <Modal.Content>
-                        <ModalCard />
+                        {this.props.stations.volunteers.map((person, index) => {
+                          return <ModalCard volunteer={person} />;
+                        })}
                       </Modal.Content>
                       <Modal.Actions>
-                        <NestedModal />
+                        <NestedModal Id={this.props.stations.id} />
                       </Modal.Actions>
                     </Modal>
                   </div>

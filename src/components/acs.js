@@ -54,10 +54,12 @@ export default class Constituency extends React.Component {
                     >
                       <Modal.Header>Users</Modal.Header>
                       <Modal.Content>
-                        <ModalCard />
+                        {this.props.acsName.volunteers.map((person, index) => {
+                          return <ModalCard volunteer={person} />;
+                        })}
                       </Modal.Content>
                       <Modal.Actions>
-                        <NestedModal />
+                        <NestedModal Id={this.props.acsName.id} />
                       </Modal.Actions>
                     </Modal>
                   </div>

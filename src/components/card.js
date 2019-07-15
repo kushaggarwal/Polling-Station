@@ -30,7 +30,6 @@ export default class ModalCard extends React.Component {
   render() {
     return (
       <div>
-        
         <h1>{this.props.volunteer.Post.title}</h1>
         <Card.Group>
           <Card className="post1">
@@ -46,13 +45,16 @@ export default class ModalCard extends React.Component {
                 src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
               />
               <Card.Header>{this.props.volunteer.name}</Card.Header>
-              <Card.Description>{this.props.volunteer.contact}</Card.Description>
-              
-              <Card.Description>{this.props.volunteer.address}</Card.Description>
+              <Card.Description>
+                {this.props.volunteer.contact}
+              </Card.Description>
+
+              <Card.Description>
+                {this.props.volunteer.address}
+              </Card.Description>
             </Card.Content>
           </Card>
         </Card.Group>
-
       </div>
     );
   }

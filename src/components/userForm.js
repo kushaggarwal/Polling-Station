@@ -20,40 +20,46 @@ import {
   Card,
   Icon,
   Menu,
-  Dropdown
+  Dropdown,
+  Input
 } from "semantic-ui-react";
 
 export default class NestedModal extends React.Component {
   state = { open: false };
-constructor(props){
-  super(props)
-  this.state={
-    name:'',
-    address:'',
-    Image:'',
-    psot:''
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      contact: "",
+      post: "",
+      add: "",
+      image: "",
+      Id: "",
+      url: ""
+    };
   }
-  this.handleChange = this.handleChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this);
-}
+  sendData = data => {
+    fetch(this.state.url, {
+      method: "POST",
+      body: JSON.stringify(data)
+    }).then(
+      function(response) {
+        console.log(response);
+      },
+      function(error) {}
+    );
+  };
 
-handleChange(event) {
-  this.setState({value: event.target.value});
-}
-
-handleSubmit(event) {
-  alert('A name was submitted: ' + this.state.value);
-  event.preventDefault();
-}
   open = () => this.setState({ open: true });
   close = () => this.setState({ open: false });
-  
+
   render() {
+    const { Name } = this.state;
     const { open } = this.state;
     const options = [
-      { key: 1, text: "Choice 1", value: 1 },
-      { key: 2, text: "Choice 2", value: 2 },
-      { key: 3, text: "Choice 3", value: 3 }
+      { key: 1, text: "Mentor", value: 1 },
+      { key: 2, text: "Intern", value: 2 },
+      { key: 3, text: "Admin", value: 3 }
     ];
     return (
       <Modal
@@ -76,47 +82,73 @@ handleSubmit(event) {
                 id="form-subcomponent-shorthand-input-first-name"
                 label="Name"
                 placeholder="Name"
-                value={this.state.name} onChange={this.handleChange}
+                onChange={e => {
+                  this.setState({ name: e.target.value });
+                }}
               />
               <Form.Input
                 fluid
                 id="form-subcomponent-shorthand-input-last-name"
                 label="Contact"
                 placeholder="Contact"
-                value={this.state.contact} onChange={this.handleChange} 
+                onChange={e => {
+                  this.setState({ contact: e.target.value });
+                }}
               />
             </Form.Group>
-            
             <Form.Field>
               <label>Address</label>
-              <input placeholder="Address" value={this.state.address} onChange={this.handleChange} />
-            </Form.Field>
-            <Form.Field style={{ marginTop: "5px" }}>
-              <label>Post</label>
-              <Dropdown
-                placeholder="Choose Post"
-                fluid
-                selection
-                options={options}
-                value={this.state.post} onChange={this.handleChange}
+              <input
+                placeholder="Address"
+                onChange={e => {
+                  this.setState({ add: e.target.value });
+                }}
               />
             </Form.Field>
-            <Form.Group widths="equal">
-              {/*<Form.Field>
+
+            <Form.Field style={{ marginTop: "5px" }}>
+              <label>Post</label>
+              <select
+                className="ui dropdown"
+                id="inputDept"
+                onChange={e => {
+                  this.setState({ post: e.target.value });
+                }}
+              >
+                <option value="">Select Post</option>
+                <option value="1">Mentor</option>
+                <option value="2">Intern</option>
+                <option value="3">Admin</option>
+              </select>
+            </Form.Field>
+            {/*<Form.Group widths="equal">
+              <Form.Field>
                 <label>Image</label>
                 <Button>Upload</Button>
-              </Form.Field>*/}
-            </Form.Group>
+              </Form.Field>
+              </Form.Group>*/}
+            <Button
+              icon="check"
+              className="right floated"
+              content="All Done"
+              style={{ marginBottom: "15px" }}
+              onClick={() => {
+                this.close();
+
+                var data = {
+                  name: this.state.name,
+                  contact: this.state.contact,
+                  address: this.state.add,
+                  post: this.state.post,
+                  Id: this.props.Id
+                };
+                console.log(data);
+                //this.sendData(data);
+              }}
+            />
           </Form>
         </Modal.Content>
-        <Modal.Actions>
-          <Button icon="check" type="submit" value="Submit" onClick={
-            const data = {
-              state_id = this.props.state_id,
-              
-            }
-          } />
-        </Modal.Actions>
+        <Modal.Actions />
       </Modal>
     );
   }

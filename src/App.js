@@ -38,7 +38,7 @@ class Structure extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://127.0.0.1:5000/api/v1/states")
+    fetch("http://demo5532139.mockable.io/states2")
       .then(response => response.json())
       .then(
         result => {
@@ -91,8 +91,8 @@ class Structure extends React.Component {
                   <List.Content>
                     <List.List>
                       {stateData.map((state, index) => {
-                        return (<States state={state} key={index} />
-                      )})}
+                        return <States state={state} key={index} />;
+                      })}
                     </List.List>
                   </List.Content>
                 </List.Item>
